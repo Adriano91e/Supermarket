@@ -1,0 +1,54 @@
+<!--
+  Generated template for the RegisterPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Register</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+
+<form (ngSubmit)="register()" #f="ngForm">
+  <ion-item>
+    <ion-label floating>Username</ion-label>
+    <ion-input type="text" [(ngModel)]="user.username" name="username"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label floating>Passoword</ion-label>
+    <ion-input type="text" [(ngModel)]="user.password" name="password"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label floating>Telefono</ion-label>
+    <ion-input type="text" [(ngModel)]="user.tel" name="tel"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label floating>Città</ion-label>
+    <ion-input type="text" [(ngModel)]="user.citta" name="citta"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label floating>Provincia</ion-label>
+    <ion-input type="text" [(ngModel)]="user.prov" name="prov"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label floating>Cap</ion-label>
+    <ion-input type="text" [(ngModel)]="user.cap" name="cap"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label floating>Via</ion-label>
+    <ion-input type="text" [(ngModel)]="user.via" name="via"></ion-input>
+  </ion-item>
+
+  <div align="center"><button ion-button type="submit">Registrati</button></div>
+
+</form>
+
+</ion-content>
