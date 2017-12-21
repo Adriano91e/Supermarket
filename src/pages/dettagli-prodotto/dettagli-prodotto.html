@@ -30,22 +30,22 @@
 
     </ion-card-content>
 
-    <form (ngSubmit)="carrello()" #f="ngForm">
+    <div>
+      <button ion-button clear small color="danger" icon-start (click)="addQuantita()">
+        <ion-icon name='add'></ion-icon>
+      </button>
+    </div>
+
+    <div>
+      <button ion-button clear small color="danger" icon-start (click)="removeQuantita()">
+        <ion-icon name='remove'></ion-icon>
+      </button>
+    </div>
+
+    <form (ngSubmit)="carrello(prod)" #f="ngForm">
 
       <div>
-        <button ion-button clear small color="danger" icon-start (click)="addQuantita()">
-          <ion-icon name='add'></ion-icon>
-        </button>
-      </div>
-
-      <div>
-        <button ion-button clear small color="danger" icon-start (click)="removeQuantita()">
-          <ion-icon name='remove'></ion-icon>
-        </button>
-      </div>
-
-      <div>
-        <ion-input [(ngModel)]="a" name="quantitaDaAcquistare" (keyup)="maxQuantitaAlert2()">
+        <ion-input type="number" [(ngModel)]="prod.quantitaDaAcquistare" name="quantitaDaAcquistare" (keyup)="checkQuantita()">
         </ion-input>
       </div>
 

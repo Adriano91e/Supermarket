@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {AlertController, IonicPage, NavController, NavParams} from 'ionic-angular';
+import {AlertController, Events, IonicPage, NavController, NavParams} from 'ionic-angular';
 import {LoginProvider} from "../../providers/login/login";
 import {user} from "../../model/user";
 import {LoginPage} from "../login/login";
@@ -19,9 +19,10 @@ import {LoginPage} from "../login/login";
 export class RegisterPage {
 
   user: user = new user;
+  prova:any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private registerService: LoginProvider,
-              private alertCtrl: AlertController) {
+              private alertCtrl: AlertController, public events: Events) {
   }
 
   ionViewDidLoad() {
@@ -30,8 +31,7 @@ export class RegisterPage {
 
   register(user) {
     this.registerService.Register(this.user).subscribe(data => {
-      console.log("user saved");
-      localStorage.setItem('user', JSON.stringify(data));
+      console.log("user created");
       this.navCtrl.setRoot(LoginPage);
     }, err => {
       console.log(err);

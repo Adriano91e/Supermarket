@@ -7,17 +7,43 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>lista-prodotti</ion-title>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Lista prodotti</ion-title>
   </ion-navbar>
 
+  <ion-chip style="margin: 2px 115px;margin-top: 15px" >
+    <button ion-button (click)="goCarrello()"><ion-icon name="cart"></ion-icon></button>
+    <ion-label>Carrello</ion-label>
+  </ion-chip>
 </ion-header>
 
 
 <ion-content padding>
 
-  <ion-buttons align="right" (put)=changePage()>
-    <ion-icon name="cart"></ion-icon>
+  <div padding>
+    <ion-segment [(ngModel)]="pet">
+      <ion-segment-button value="alim">
+        Alimenti
+      </ion-segment-button>
+      <ion-segment-button value="casa">
+        Casa
+      </ion-segment-button>
+      <ion-segment-button value="pers">
+        Persona
+      </ion-segment-button>
+      <ion-segment-button value="anim">
+        Animali
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+
+  <ion-buttons padding-right align="right" (click)=goCarrello()>
   </ion-buttons>
+
+
   <ion-content class="card-background-page">
     <div *ngFor="let prodotto of listaProdotti">
       <ion-card style="width: 300px;height: 300px">

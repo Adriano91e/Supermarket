@@ -8,9 +8,15 @@
 </ion-header>
 
 <ion-content padding>
-  <h3>Supermarket</h3>
-
-
-
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+  <h1 style="color: red" align="center">Supermarket</h1>
+   <h6>Ecco il nostri prodotti:</h6>
+  <ion-slides (ionSlideDidChange)="slideChanged()">
+    <div *ngFor="let p of listaProdotti">
+      <ion-slide>
+      <h1>{{p.nome}}</h1>
+      <img src={{p.img}}>
+      <p>{{p.prezzoIvato}}€</p>
+    </ion-slide>
+    </div>
+  </ion-slides>
 </ion-content>

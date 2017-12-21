@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {IonicPage, List, NavController, NavParams} from 'ionic-angular';
+import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {ProdottoProvider} from "../../providers/prodotto/prodotto";
 import {prodotto} from "../../model/prodotto";
 import {CarrelloPage} from "../carrello/carrello";
@@ -23,6 +23,8 @@ export class ListaProdottiPage {
 
   pr:prodotto;
 
+  logged:any;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, private prodottoService:ProdottoProvider) {
     this.getListaProdotti();
   }
@@ -35,7 +37,7 @@ export class ListaProdottiPage {
   getListaProdotti(){
     this.prodottoService.getAll().subscribe(data=>{
      this.listaProdotti=data;
-     console.log("la lista dei prodotti è: "+ JSON.stringify(this.listaProdotti));
+     //console.log("la lista dei prodotti è: "+ JSON.stringify(this.listaProdotti));
     },err=>{
       console.error(err);
     })
@@ -47,7 +49,7 @@ export class ListaProdottiPage {
    });
   }
 
-  changePage(){
+  goCarrello(){
     this.navCtrl.push(CarrelloPage);
   }
 }

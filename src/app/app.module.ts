@@ -11,10 +11,15 @@ import { LoginProvider } from '../providers/login/login';
 import { ProdottoProvider } from '../providers/prodotto/prodotto';
 import {LoginPage} from "../pages/login/login";
 import {RegisterPage} from "../pages/register/register";
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {ListaProdottiPage} from "../pages/lista-prodotti/lista-prodotti";
 import {CarrelloPage} from "../pages/carrello/carrello";
 import {DettagliProdottoPage} from "../pages/dettagli-prodotto/dettagli-prodotto";
+import { CartaDiCreditoProvider } from '../providers/carta-di-credito/carta-di-credito';
+import {ListaCartePage} from "../pages/lista-carte/lista-carte";
+import { InterceptorProvider } from '../providers/interceptor/interceptor';
+import { OrdineProvider } from '../providers/ordine/ordine';
+import {OrdinePage} from "../pages/ordine/ordine";
 
 @NgModule({
   declarations: [
@@ -24,7 +29,9 @@ import {DettagliProdottoPage} from "../pages/dettagli-prodotto/dettagli-prodotto
     RegisterPage,
     ListaProdottiPage,
     CarrelloPage,
-    DettagliProdottoPage
+    DettagliProdottoPage,
+    ListaCartePage,
+    OrdinePage
   ],
   imports: [
     BrowserModule,
@@ -39,14 +46,23 @@ import {DettagliProdottoPage} from "../pages/dettagli-prodotto/dettagli-prodotto
     RegisterPage,
     ListaProdottiPage,
     CarrelloPage,
-    DettagliProdottoPage
+    DettagliProdottoPage,
+    ListaCartePage,
+    OrdinePage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     LoginProvider,
-    ProdottoProvider
+    ProdottoProvider,
+    CartaDiCreditoProvider,
+    InterceptorProvider,{
+      provide: HTTP_INTERCEPTORS,
+      useClass: InterceptorProvider,
+      multi: true,
+    },
+    OrdineProvider
   ]
 })
 export class AppModule {}

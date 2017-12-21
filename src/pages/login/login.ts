@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {Events, IonicPage, NavController, NavParams} from 'ionic-angular';
 import {LoginProvider} from "../../providers/login/login";
 import {user} from "../../model/user";
 import {ListaProdottiPage} from "../lista-prodotti/lista-prodotti";
@@ -18,9 +18,11 @@ import {ListaProdottiPage} from "../lista-prodotti/lista-prodotti";
 })
 export class LoginPage {
 
-  user:user=new user;
+  user = {username: '', password: ''};
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private loginService:LoginProvider) {
+  //prova:any;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private loginService:LoginProvider, public events:Events) {
   }
 
   ionViewDidLoad() {
@@ -30,8 +32,14 @@ export class LoginPage {
 
   login(){
     this.loginService.Login(this.user).subscribe(data=>{
-      console.log("logged "+data);
+
+      console.log("logged "+JSON.stringify(data));
+      localStorage.setItem('user', JSON.stringify(data));
+      localStorage.setItem('token',btoa(this.user.username+':'+this.user.password));
+
+     // this.events.publish('user:created', this.prova, Date.now());
       this.navCtrl.setRoot(ListaProdottiPage);
+
     },err=>{
       console.log(err)
     })

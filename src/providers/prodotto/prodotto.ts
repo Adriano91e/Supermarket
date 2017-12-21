@@ -1,8 +1,8 @@
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import {List} from "ionic-angular";
+import {Injectable} from '@angular/core';
 import {prodotto} from "../../model/prodotto";
 import {BACKEND_URL_PRODOTTO} from "../../util";
+import {Ordine} from "../../model/ordine";
 
 /*
   Generated class for the ProdottoProvider provider.
@@ -22,11 +22,15 @@ export class ProdottoProvider {
     console.log('Hello ProdottoProvider Provider');
   }
 
-  getAll(){
-   return this.http.get<prodotto[]>(BACKEND_URL_PRODOTTO+'getall');
+  getAll() {
+    return this.http.get<prodotto[]>(BACKEND_URL_PRODOTTO + 'getall');
   }
 
-  Buy(idCarta,listaProdotti){
-    return this.http.post(BACKEND_URL_PRODOTTO+'addprodotto/'+idCarta,listaProdotti, httpOptions);
+  // Buy(idCarta, listaProdotti) {
+  //   return this.http.post(BACKEND_URL_PRODOTTO + 'addprodotto/' + idCarta, listaProdotti, {responseType: 'text'});
+  // }
+
+  Buy(idCarta, listaProdotti) {
+    return this.http.post<Ordine[]>(BACKEND_URL_PRODOTTO + 'addprodotto/' + idCarta, listaProdotti, httpOptions);
   }
 }

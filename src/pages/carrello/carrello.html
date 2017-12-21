@@ -7,6 +7,9 @@
 <ion-header>
 
   <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
     <ion-title>carrello</ion-title>
   </ion-navbar>
 
@@ -14,5 +17,33 @@
 
 
 <ion-content padding>
+
+  <ion-list>
+    <ion-item *ngFor="let prodotto of listaProdottiCarrello">
+      <ion-thumbnail item-start>
+        <img src="{{prodotto.img}}">
+      </ion-thumbnail>
+      <div><h2>{{prodotto.nome}}</h2><h2>{{prodotto.marca}}</h2><h5 style="color: limegreen">Quantita:</h5><h5>{{prodotto.quantitaDaAcquistare}}</h5></div>
+    </ion-item>
+    <p></p>
+    <p></p>
+    <h5 align="center">Prezzo Totale = {{prezzoTot}} €</h5>
+
+  </ion-list>
+
+  <ion-item>
+    <ion-label>Scegli la carta</ion-label>
+    <p></p>
+
+    <ion-select [(ngModel)]="carta">
+      <div *ngFor="let c of listaCarte">
+      <ion-option [value]="c">id: {{c.id}} Scadenza: {{c.scadenza}}</ion-option>
+      </div>
+    </ion-select>
+  </ion-item>
+
+  <button ion-button (click)="Acquista()">Acquista</button>
+  <button ion-button (click)="clearCarrello()">Svuota Carrello</button>
+
 
 </ion-content>
